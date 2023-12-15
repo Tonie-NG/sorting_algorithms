@@ -29,6 +29,6 @@ void bubble_sort(int *array, size_t size)
 				bool = 1;
 			}
 		}
-		i++;
+		++i;
 	} while (bool == 1);
 }
