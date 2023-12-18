@@ -2,7 +2,7 @@
 
 /**
  * quick_sort - a function that sorts an array of integers
- * in ascending order using the Quick sort algorithm.
+ * in aschighing order using the Quick sort algorithm.
  *
  * @array: the array to be sorted.
  * @size: size of the array to be sorted.
@@ -11,7 +11,7 @@ void quick_sort(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
 		return;
-	quick_sort_recursion(array, 0, size - 1, size);
+	recursort(array, 0, size - 1, size);
 }
 
 /**
@@ -30,62 +30,62 @@ void swap(int *x, int *y)
 }
 
 /**
- * quick_sort_recursion - recursive implementation of the quick sort.
+ * partition - a functions that partitions an array int 2 sub arrays.
+ * The first sub array which is assumed to on the left side of
+ * the pivot contains values that are less than the pivot while
+ * the rest of the values greater than teh pivot are in the second array.
+ *
+ * @array: The array to be sorted.
+ * @low: the lowest index of the array.
+ * @high: The highest index of the array.
+ * @size: the size of the array (used mostly to print the array after swap).
+ *
+ * Return: the index of the pivot after partitioning.
+ */
+int partition(int *array, int low, int high, size_t size)
+{
+	int pivot = array[high];
+	int j = low;
+
+	while (j < high)
+	{
+		if (array[j] < pivot)
+		{
+			if (low < j)
+			{
+				swap(&array[low], &array[j]);
+				print_array(array, size);
+			}
+			low = low + 1;
+		}
+		j++;
+	}
+
+	if (array[low] > pivot)
+	{
+		swap(&array[low], &array[high]);
+		print_array(array, size);
+	}
+
+	return (low);
+}
+
+/**
+ * recursort - recursive implementation of the quick sort.
  *
  * @array: The array to be sorted.
  * @low: the lowest index of the array.
  * @high: The highest index of the array.
  * @size: the size of the array (used mostly to print the array after swap).
  */
-void quick_sort_recursion(int *array, int low, int high, size_t size)
+void recursort(int *array, int low, int high, size_t size)
 {
-	int p;
+	int pivot;
 
-	if (low >= 0 && high >= 0 && low < high)
+	if (low < high)
 	{
-		p = partition(array, low, high, size);
-		quick_sort_recursion(array, low, p, size);
-		quick_sort_recursion(array, p + 1, high, size);
-	}
-}
-
-/**
- * partition - A function to partition the array.
- * This function picks a pivot element from the array and
- * rearranges the elements such that elements smaller than the
- * pivot are on the left, and elements greater than the pivot
- * are on the right.
- *
- * @array: The array to be partitioned.
- * @low: The starting index of the array or subarray to be partitioned.
- * @high: The ending index of the array or subarray to be partitioned.
- * @size: The size of the array.
- *
- * Return: The final position of the pivot element after partitioning.
- */
-int partition(int *array, int low, int high, size_t size)
-{
-	int n = ((high - low) / 2) + low;
-	int pivot = array[n];
-	int i = low - 1;
-	int j = high + 1;
-
-	while (1)
-	{
-		do {
-			i = i + 1;
-		} while (array[i] < pivot);
-
-		do {
-			j = j - 1;
-		} while (array[j] > pivot);
-
-		if (i >= j)
-		{
-			return (j);
-		}
-
-		swap(&array[i], &array[j]);
-		print_array(array, size);
+		pivot = partition(array, low, high, size);
+		recursort(array, low, pivot - 1, size);
+		recursort(array, pivot + 1, high, size);
 	}
 }
