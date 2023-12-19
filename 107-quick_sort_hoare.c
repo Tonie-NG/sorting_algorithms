@@ -27,11 +27,11 @@ void quick_sort_hoare(int *array, size_t size)
 void hoare_recur(int *array, int low, int high, size_t size)
 {
 	int pivot;
-	if (low >= 0 && high >= 0 && low < high)
+	if (low < high)
 	{
 		pivot = hoare_parti(array, low, high, size);
-		hoare_recur(array, low, pivot, size);
-		hoare_recur(array, pivot + 1, high, size);
+		hoare_recur(array, low, pivot - 1, size);
+		hoare_recur(array, pivot, high, size);
 	}
 }
 
@@ -54,7 +54,7 @@ int hoare_parti(int *array, int low, int high, size_t size)
 	int j = high + 1;
 	int temp;
 
-	while (1)
+	while (i < j)
 	{
 		do {
 			i = i + 1;
@@ -64,12 +64,14 @@ int hoare_parti(int *array, int low, int high, size_t size)
 			j = j - 1;
 		} while (array[j] > pivot);
 
-		if (i >= j)
-			return (j);
-
-		temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-		print_array(array, size);
+		if (i < j)
+		{
+			temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+			print_array(array, size);
+		}
 	}
+
+	return (i);
 }
