@@ -49,7 +49,7 @@ void hoare_recur(int *array, int low, int high, size_t size)
 
 int hoare_parti(int *array, int low, int high, size_t size)
 {
-	int pivot = array[((high - low) / 2) + low];
+	int pivot = array[high];
 	int i = low - 1;
 	int j = high + 1;
 	int temp;
