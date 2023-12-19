@@ -32,7 +32,7 @@ void hoare_recur(int *array, int low, int high, size_t size)
 	{
 		pivot = hoare_parti(array, low, high, size);
 		hoare_recur(array, low, pivot - 1, size);
-		hoare_recur(array, pivot, high, size);
+		hoare_recur(array, pivot + 1, high, size);
 	}
 }
 
