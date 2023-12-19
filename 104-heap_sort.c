@@ -17,7 +17,7 @@ void heap_sort(int *array, size_t size)
 
 	while (n >= 0)
 	{
-		heapify(array, size, n, size);
+		heapifynode(array, size, n, size);
 		n--;
 	}
 
@@ -29,13 +29,13 @@ void heap_sort(int *array, size_t size)
 		array[0] = array[n];
 		array[n] = temp;
 		print_array(array, size);
-		heapify(array, n, 0, size);
+		heapifynode(array, n, 0, size);
 		n--;
 	}
 }
 
 /**
- * heapify - a function that converts an array
+ * heapifynode - a function that converts an array
  * into a heap data structure.
  *
  * @array: the input array.
@@ -48,7 +48,7 @@ void heap_sort(int *array, size_t size)
  * left and right children, and swaps it with the largest child if needed.
  * The process is repeated recursively until the entire array is a heap.
  */
-void heapify(int *array, int hsize, int n, size_t ogsize)
+void heapifynode(int *array, int hsize, int n, size_t ogsize)
 {
 	int largest, left, right, temp;
 
@@ -68,6 +68,6 @@ void heapify(int *array, int hsize, int n, size_t ogsize)
 		array[n] = array[largest];
 		array[largest] = temp;
 		print_array(array, ogsize);
-		heapify(array, hsize, largest, ogsize);
+		heapifynode(array, hsize, largest, ogsize);
 	}
 }

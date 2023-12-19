@@ -33,6 +33,6 @@ void quick_sort_hoare(int *array, size_t size);
 void hoare_recur(int *array, int low, int high, size_t size);
 int hoare_parti(int *array, int low, int high, size_t size);
 void heap_sort(int *array, size_t size);
-void heapify(int *array, int hsize, int n, size_t ogsize);
+void heapifynode(int *array, int hsize, int n, size_t ogsize);
 
 #endif /* SORT_H */
