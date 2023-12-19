@@ -17,7 +17,7 @@ void quick_sort_hoare(int *array, size_t size)
 }
 
 /**
- * recursort - recursive implementation of the quick sort.
+ * hoare_recur - recursive implementation of the quick sort.
  *
  * @array: The array to be sorted.
  * @low: the lowest index of the array.
@@ -27,6 +27,7 @@ void quick_sort_hoare(int *array, size_t size)
 void hoare_recur(int *array, int low, int high, size_t size)
 {
 	int pivot;
+
 	if (low < high)
 	{
 		pivot = hoare_parti(array, low, high, size);
@@ -46,7 +47,6 @@ void hoare_recur(int *array, int low, int high, size_t size)
  *
  * Return: the index of the pivot after partitioning.
  */
-
 int hoare_parti(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
